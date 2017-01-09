@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">test2</string>
+    <string-array name="names">
+        <item>Иван</item>
+        <item>Сергей</item>
+        <item>Валентин</item>
+        <item>Виктория</item>
+        <item>Ольга</item>
+        <item>Екатерина</item>
+        <item>Евгения</item>
+        <item>Владислава</item>
+        <item>Александр</item>
+        <item>Петр</item>
+        <item>Иван</item>
+        <item>Роман</item>
+        <item>Виктор</item>
+        <item>Константин</item>
+    </string-array>
+</resources>

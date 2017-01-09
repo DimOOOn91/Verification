@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FirebaseAuthTest</string>
+    <string name="e_mail">e-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
+    <string name="logout">Log out</string>
+    <string name="create_account">Create Account</string>
+    <string name="required">Required.</string>
+    <string name="auth_failed">Auth is Failed!</string>
+    <string name="logged_in">Logged in!</string>
+    <string name="too_short">Too Short</string>
+</resources>

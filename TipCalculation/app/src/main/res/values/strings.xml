@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TipCalculation</string>
+    <string name="enter_the_sum">Enter the sum</string>
+    <string name="clean">Clean</string>
+    <string name="dialog_title">Dialog title</string>
+    <string name="dialog_title_1">Dialog title 1</string>
+    <string name="summary">Summary</string>
+</resources>

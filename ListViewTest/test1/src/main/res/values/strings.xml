@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ListViewTest</string>
+    <string-array name="names">
+        <item>Иван</item>
+        <item>Мария</item>
+        <item>Ольга</item>
+        <item>Инна</item>
+        <item>Дмитрий</item>
+        <item>Василий</item>
+        <item>Константин</item>
+        <item>Виктория</item>
+        <item>Валентина</item>
+        <item>Эдуард</item>
+        <item>Сергей</item>
+        <item>Денис</item>
+        <item>Вадим</item>
+        <item>Евгений</item>
+        <item>Тамара</item>
+    </string-array>
+</resources>

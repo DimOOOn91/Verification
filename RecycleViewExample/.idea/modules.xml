@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RecycleViewExample.iml" filepath="$PROJECT_DIR$/RecycleViewExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exprvexample_bignerdranch/exprvexample_bignerdranch.iml" filepath="$PROJECT_DIR$/exprvexample_bignerdranch/exprvexample_bignerdranch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exprvexample_bignerdranch_v211/exprvexample_bignerdranch_v211.iml" filepath="$PROJECT_DIR$/exprvexample_bignerdranch_v211/exprvexample_bignerdranch_v211.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rvexample/rvexample.iml" filepath="$PROJECT_DIR$/rvexample/rvexample.iml" />
+    </modules>
+  </component>
+</project>
