@@ -74,12 +74,14 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         outState.putString(SUM, mOriginalSum.getText().toString());
         outState.putString(PERCENT, mTipPercent.getText().toString());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
         mOriginalSum.setText(savedInstanceState.getString(SUM, ""));
         mTipPercent.setText(savedInstanceState.getString(PERCENT, "10"));
     }
@@ -90,7 +92,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     public void calculateTotalSum() {
         double originalSum = getDouble(mOriginalSum);
-        double tipCoef = Double.parseDouble(mTipPercent.getText().toString()) / 100;
+        double tipCoef = getDouble(mTipPercent) / 100;
         double tipSum = originalSum * tipCoef;
         mTipSum.setText(String.format("%s UAH", tipSum));
         mTotalSum.setText(String.format("%s UAH", originalSum + tipSum));
@@ -122,9 +124,11 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
             switch (mEditText.getId()) {
                 case R.id.percent:
                     updateSeekBar();
+                    mEditText.setSelection(mEditText.getText().length());
                     break;
                 case R.id.sum:
                     calculateTotalSum();
+                    mEditText.setSelection(mEditText.getText().length());
                     break;
                 default:
                     break;
