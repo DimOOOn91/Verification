@@ -65,8 +65,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/percent"
-                    android:max="100"
-                    android:progress="10"/>
+                    android:max="99"
+                    android:progress="9"/>
             </RelativeLayout>
 
             <TextView

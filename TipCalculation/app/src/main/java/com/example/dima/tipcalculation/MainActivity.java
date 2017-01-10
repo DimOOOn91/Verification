@@ -1,7 +1,7 @@
 package com.example.dima.tipcalculation;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -11,9 +11,9 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener{
 
-    public static final String PERCENT = "Persent";
+    public static final String PERCENT = "Percent";
     public static final String SUM = "Sum";
 
     private EditText mOriginalSum;
@@ -46,7 +46,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        mTipPercent.setText(String.valueOf(i));
+        mTipPercent.setText(String.valueOf(i + 1));
         calculateTotalSum();
     }
 
@@ -87,7 +87,11 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     }
 
     private void updateSeekBar() {
-        mSeekBar.setProgress(Integer.valueOf(mTipPercent.getText().toString()));
+        int progress = getInteger(mTipPercent) - 1;
+        if (progress < 0) {
+            progress = 0;
+        }
+        mSeekBar.setProgress(progress);
     }
 
     public void calculateTotalSum() {
@@ -104,6 +108,14 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
             return 0;
         }
         return Double.parseDouble(input);
+    }
+
+    private static int getInteger(EditText editText) {
+        String input = editText.getText().toString();
+        if (TextUtils.isEmpty(input)) {
+            return 0;
+        }
+        return Integer.parseInt(input);
     }
 
     //Complex TextWatcher for all EditTexts
@@ -124,11 +136,10 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
             switch (mEditText.getId()) {
                 case R.id.percent:
                     updateSeekBar();
-                    mEditText.setSelection(mEditText.getText().length());
+                    mEditText.setSelection(mEditText.getSelectionEnd());
                     break;
                 case R.id.sum:
                     calculateTotalSum();
-                    mEditText.setSelection(mEditText.getText().length());
                     break;
                 default:
                     break;
