@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     public static final String PERCENT = "Percent";
     public static final String SUM = "Sum";
 
+    private int percent;
+
     private EditText mOriginalSum;
     private EditText mTipPercent;
     private TextView mTotalSum;
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     }
 
     private void updateSeekBar() {
-        int progress = getInteger(mTipPercent) - 1;
+        int progress = percent - 1;
         if (progress < 0) {
             progress = 0;
         }
@@ -135,8 +137,9 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             switch (mEditText.getId()) {
                 case R.id.percent:
+                    percent = getInteger(mTipPercent);
                     updateSeekBar();
-                    mEditText.setSelection(mEditText.getSelectionEnd());
+//                    mEditText.setSelection(mEditText.getSelectionEnd());
                     break;
                 case R.id.sum:
                     calculateTotalSum();
