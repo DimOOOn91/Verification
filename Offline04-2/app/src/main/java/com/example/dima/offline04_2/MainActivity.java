@@ -23,7 +23,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 111;
-    private static final String IMAGE_DIRECTORY = "testPhoto";
+    private static final String IMAGE_DIRECTORY = "TestPhoto";
     private Uri fileUri;
 
     private ImageView fullImage;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 "testPhoto");
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d(IMAGE_DIRECTORY, "Oooops! Field created");
+                Log.d("123", "Oooops! Field created");
             }
         }
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
