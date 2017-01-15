@@ -1,14 +1,19 @@
 package com.example.dima.lection06;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.LocationListener;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,8 +34,10 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int REQUEST_IMAGE_CAPTURE = 111;
-    private Uri photoUri;
     private static final String IMAGE_DIRECTORY = "TestPhoto";
+    private Uri photoUri;
+    private LocationListener mLocationListener;
+
 
     @BindView(R.id.et_shreText)
     EditText title;
@@ -66,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnSetEvent;
     @BindView(R.id.btn_makePhoto)
     Button btnMakePhoto;
+    @BindView(R.id.btn_wifiSettings)
+    Button btnWifi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSetTimer.setOnClickListener(this);
         btnSetEvent.setOnClickListener(this);
         btnMakePhoto.setOnClickListener(this);
+        btnWifi.setOnClickListener(this);
+
+        onWifiListener();
 
 //        FragmentManager fragmentManager = getSupportFragmentManager();
 //        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -87,9 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        fragmentTransaction.commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.activity_main, new MyFragment(), "tag").commit();
 
-
     }
-
 
     @Override
     public void onClick(View view) {
@@ -110,6 +120,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                dispatchTakePictureIntent();
                 makePhoto();
                 break;
+            case R.id.btn_wifiSettings:
+                openWifiSettings();
+                break;
             default:
                 break;
         }
@@ -118,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-                switch (requestCode) {
+            switch (requestCode) {
                 case REQUEST_IMAGE_CAPTURE:
                     previewCaptureImage();
                     break;
@@ -188,13 +201,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
     public Uri getOutputPhotoUri() {
         return Uri.fromFile(getOutputPhoto());
     }
@@ -206,27 +212,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 IMAGE_DIRECTORY);
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d("123", "Oooops! Field created");
+                makeLog("Oooops! Field created");
             }
         }
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
                 Locale.getDefault()).format(new Date());
         return new File(mediaStorageDir.getPath() + File.separator
                 + "IMG_" + timeStamp + ".jpg");
-
-    //        File mediaStoreDir = new File(
-    //                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-    //                "testPhoto");
-    //        Log.d("123", mediaStoreDir.getPath() + File.separator);
-    //        if (!mediaStoreDir.exists()) {
-    //            if (!mediaStoreDir.mkdirs()) {
-    //                Log.d("123", "getOutputPhoto(), Ooooooops, Dir is created");
-    //            }
-    //        }
-    //        String timeSeparator = new SimpleDateFormat("yyyyMMdd_HHmmss",
-    //                Locale.getDefault()).format(new Date());
-    ////        return new File("/storage/emulated/0/Pictures/testPhoto/IMG_" + timeSeparator + ".jpg");
-    //        return new File(mediaStoreDir.getPath(), "IMG_" + timeSeparator + ".jpg");
     }
 
     private void previewCaptureImage() {
@@ -239,5 +231,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openWifiSettings() {
+        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    private void onWifiListener() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI &&
+                    activeNetwork.isConnected()) {
+                btnWifi.setBackgroundResource(android.R.color.holo_green_dark);
+            } else {
+                btnWifi.setBackgroundResource(android.R.drawable.btn_default);
+            }
+        }
+    }
+
+    private void makeLog(String s) {
+        Log.d("123", s);
     }
 }

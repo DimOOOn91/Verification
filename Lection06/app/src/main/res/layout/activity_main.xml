@@ -218,6 +218,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/img_photo"
                 android:text="Make photo"/>
+
+            <Button
+                android:id="@+id/btn_wifiSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_makePhoto"
+                android:text="Wifi"/>
         </RelativeLayout>
     </ScrollView>
 
