@@ -7,8 +7,6 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import java.io.IOException;
-
 public class RingtonePlayingService extends Service {
 
     private static MediaPlayer media_song;
@@ -35,7 +33,7 @@ public class RingtonePlayingService extends Service {
         // to start IDs, values 0 or 1
         assert state != null;
         switch (state) {
-            case "alarm on":
+            case "alarm_on":
                 this.startId = 1;
                 Log.e("Start ID is ", state);
                 break;
@@ -55,7 +53,7 @@ public class RingtonePlayingService extends Service {
         // if else statement
         // if there no music playing, and the user pressed "alarm_on"
         // music should start playing
-        if (!isRunning && startId == 1) {
+        if (!isRunning && this.startId == 1) {
             Log.e("There is no music", " and you want to start");
 
 
@@ -65,52 +63,34 @@ public class RingtonePlayingService extends Service {
             media_song.start();
 
             this.isRunning = true;
-            this.startId = 0;
-        }
 
-        // if there is music playing, an the user pressed "alarm_off"
-        // music should stop playing
-        else if (isRunning && startId == 0) {
+            // if there is music playing, an the user pressed "alarm_off"
+            // music should stop playing
+        } else if (isRunning && this.startId == 0) {
             Log.e("There is music", " and you want to end");
 
             // stop the ringtone
             media_song.stop();
             media_song.reset();
-            try {
-                media_song.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
             this.isRunning = false;
-            this.startId = 0;
-        }
 
-        // these are if the user presses the random buttons
-        // just to bug-proof the app
-        // if there is no music, and the user presser "alarm_off"
-        // do nothing
-        else if (!isRunning && startId == 0) {
+            // these are if the user presses the random buttons
+            // just to bug-proof the app
+            // if there is no music, and the user presser "alarm_off"
+            // do nothing
+        } else if (!isRunning && this.startId == 0) {
             Log.e("There is no music", " and you want to end");
 
-            this.isRunning = false;
-            this.startId = 0;
-
-        }
-
-        // if there is music playing,  and the user presser "alarm_on"
-        // do nothing
-        else if (isRunning && startId == 1) {
+            // if there is music playing,  and the user presser "alarm_on"
+            // do nothing
+        } else if (isRunning && this.startId == 1) {
             Log.e("There is music", " and you want to start");
 
-            this.isRunning = true;
-            this.startId = 0;
-
-        }
-
-        // can't think of anything else, just to catch the odd event
-        else {
+            // can't think of anything else, just to catch the odd event
+        } else {
             Log.e("else", " somehow you rich this");
+            Log.e("else", "isRunning = " + isRunning + "; startId = " + this.startId);
 
             media_song.stop();
             media_song.reset();

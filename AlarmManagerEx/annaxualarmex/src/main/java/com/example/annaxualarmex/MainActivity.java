@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // setting calendar instance with the hour and minute
                 calendar.set(Calendar.HOUR_OF_DAY, hour);
                 calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.SECOND, 0);
 
                 // get the string from out hours and minutes
                 String hour_string = String.valueOf(hour);
