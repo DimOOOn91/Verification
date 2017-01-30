@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidHelper</string>
+    <string name="start">Start</string>
+    <string name="cancel">Cancel</string>
+    <string name="one_time">One Time</string>
+    <string name="title_activity_main">My Alarm</string>
+</resources>

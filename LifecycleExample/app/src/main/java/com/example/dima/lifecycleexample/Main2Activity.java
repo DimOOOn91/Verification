@@ -25,80 +25,80 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
         makeLog("onPostCreate");
+        super.onPostCreate(savedInstanceState);
     }
 
     @Override
     protected void onPostResume() {
-        super.onPostResume();
         makeLog("onPostResume");
+        super.onPostResume();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         makeLog("onBackPressed");
+        super.onBackPressed();
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
         makeLog("onStart");
+        super.onStart();
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
         makeLog("onStop");
+        super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         makeLog("onDestroy");
+        super.onDestroy();
     }
 
     @Override
     public void onContentChanged() {
-        super.onContentChanged();
         makeLog("onContentChanged");
+        super.onContentChanged();
     }
 
     @Override
     public void onPanelClosed(int featureId, Menu menu) {
-        super.onPanelClosed(featureId, menu);
         makeLog("onPanelClosed");
+        super.onPanelClosed(featureId, menu);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         makeLog("onActivityResult");
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
         makeLog("onPause");
+        super.onPause();
     }
 
     @Override
     public void onStateNotSaved() {
-        super.onStateNotSaved();
         makeLog("onStateNotSaved");
+        super.onStateNotSaved();
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
         makeLog("onResume");
+        super.onResume();
     }
 
     @Override
     protected void onRestart() {
-        super.onRestart();
         makeLog("onRestart");
+        super.onRestart();
     }
 
     private void makeLog(String s) {
